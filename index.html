@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pokémon Game</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- React and ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Sunshiney&display=swap');
+        .font-sunshiney {
+            font-family: 'Sunshiney', cursive;
+        }
+        .cursor-crosshair {
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+<script type="text/babel">
+    const generateRandomPosition = () => ({
+        x: Math.random() * 90 + 5,
+        y: Math.random() * 90 + 5,
+    });
+
+    const SUCCESS_SOUND = "data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBkCU1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTqO0/HPgDMGHm7A7+OZRQ0PVqzn77BdGAhBmt7yw3AnBDOH0PHThDgHGWS85OumUxELSqTj8751KAQ2iM/x1YU6CBdgtujvpl8VCkKe4fLFdCsEL4PO8diIPAcWYLfn8KlbFQpCouLyyHcsBCx/zPHaiz4HFV616fGsYhYKQaHh8sp6LgQqe8rx3I4/BxRcsuryrmUXCkCh4vLMfTAEKHfI8d6RQQcTWa/q869oGQo/oeLy0IEzBCZ0xe/glEMHElau6/SxaxoKPqDi89GENQQkcMLu4pZFBxFTrOv0s24cCjyf4vPThjcEIm2/7eSaSAcPUKrr9bVwHgo7n+Lz1Yk5BCBqu+3mnEoHDk2o6/a3cx8KOZ7i89iLOwQeZ7jt559NBw1Kpev3uHYhCjef4vPajj0EHGOz7OihTwcLR6Pr+Lp5Igo2nuLz3ZFABBpfr+zppFIHCkSh6/m7fCQKNZ3i8+CTQgQYW6zs6qZVBwhBnuv6vX8mCjOc4vPilEQEF1ep7OynWQcHPpzr+7+CKAoym+Lz45ZHBBVUpezuqVwHBjua6/zBhCoKMZri8+WZSgQTUKPs76xfBwU5mOv8w4YsCjCY4vPnm0wEEUyg7PCuYgcEN5br/cWJLgotluLz6p5PBA9Jnezxr2UHAzWU6/3HjDAKLJXi8+ygUQQNRZvs8rJnBwIyk+v+ypEyCiuU4vPvpFQEDEKY7PO0agcBMJDr/syUNAoqk+Lz8aZWBAo/luzztmlHAC6O6/7NmDYKKZLi8/SpWQQIPZXs9LlsBwAsi+v+z5s4CiiQ4vP2q1sEBzqS7PW6bwb/Konr/9GeOgonj+Lz+K5eBAY3j+z2vHIG/iiG7P/Toj0KJo3i8/qwYAQENY3s971EBv0mhOz/1aU/CiWM4vP8s2IEAzKK7Pi/Rwb8I4Hs/9eoQQokiuLz/7VkBAEviOz5wUkG+yF/7P/YrEQKI4ji9AG4ZgQALIXs+sNLBvkffe3/2q9GCiKH4vQCumkD/ymD7PvETgb4HXvt/9yyRwohhOL0BLxrA/0nf+z8xVAG9xt57f/etUkKIIPi9AbAbQP8JX3s/cdSBvYad+3/37hLCh+C4vQIwnAD+yN77P7IVQb1GHXt/+C7Tgofg+L0C8RyA/oheu3+yVcG9Bd07f/hvlAKHn/i9A3GdQP5H3jt/8tZBvMVcu3/4sFSCh1+4vQPyHcD+B147f/MWwbyE3Dt/+PEVAocfeL0EMp5A/Ydd+3/zl0G8RFu7f/lx1cKHHvi9BLMewPzG3Xt/89gBvAPbO3/5spZChx64vQTzn0D8Rl07f/RYgbvDmvt/+jNWwobeOL0FM+AA/AXcu3/0mQG7gxq7f/pz14KGnbi9BbRggPvFXDt/9RmBu0Kae3/6tJgChp24vQX04QD7RNu7f/VaQbsCmft/+vUYgoZdOL0GNWmA+wRbO3/12sG6whm7f/t12UKGXPi9BnXqAPrD2vt/9huBuoHZO3/7tppChhy4vQa2asD6Q1p7f/ZcAbpBWLt/+/cbAoXcOL0G9yuA+gLZ+3/23IG6ANh7f/x33AKF2/i9BzesAPnCWXt/9x0BucCX+3/8uFyChdu4vQd4LMD5Qhk7f/edgbmAF7t//PkdQoWbOL0HuK1A+QGYu3/4HgG5P9c7f/15ncKFmvi9B/ktQPjBGHt/+F6BuP+W+3/9ul6ChVq4vQg5rgD4gJf7f/jfQbi/Vnt//fsfAoVaeL0IejJA+EAXO3/5H8G4fxY7f/47n8KFGfi9CLq";
+
+    const messages = [
+        { text: "¡Increíble captura! ✨", gif: "https://media.giphy.com/media/2v170e71aanfi/giphy.gif" },
+        { text: "¡Wow, encontraste uno! 🌟", gif: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" },
+        { text: "¡Excelente búsqueda! 🎉", gif: "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif" },
+        { text: "¡Un Pokémon más para tu colección! 🎮", gif: "https://media.giphy.com/media/3o7aD2saalBwwftBIY/giphy.gif" },
+        { text: "¡Sigue así, entrenador! 🏆", gif: "https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" }
+    ];
+
+    const targetPokemons = [
+        { id: 25, name: "Pikachu" },
+        { id: 1, name: "Bulbasaur" },
+        { id: 4, name: "Charmander" },
+        { id: 7, name: "Squirtle" },
+        { id: 133, name: "Eevee" }
+    ];
+
+    // Pokemon Component
+    function Pokemon({ id, position, onCatch }) {
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+        return (
+            <img
+                src={imageUrl}
+                alt={`Pokemon ${id}`}
+                className="absolute w-12 h-12 cursor-pointer transition-transform hover:scale-110"
+                style={{ top: `${position.y}%`, left: `${position.x}%` }}
+                onClick={onCatch}
+                draggable={false}
+            />
+        );
+    }
+
+    // Button Component
+    function Button({ children, onClick, className }) {
+        return (
+            <button
+                onClick={onClick}
+                className={`px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${className || ''}`}
+            >
+                {children}
+            </button>
+        );
+    }
+
+    // AlertDialog Components
+    function AlertDialog({ open, children }) {
+        if (!open) return null;
+        return (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                    {children}
+                </div>
+            </div>
+        );
+    }
+
+    function App() {
+        const [pokemons, setPokemons] = React.useState([]);
+        const [message, setMessage] = React.useState(null);
+        const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+        const [score, setScore] = React.useState(0);
+        const [bgColor, setBgColor] = React.useState('bg-white');
+        const [targetPokemon, setTargetPokemon] = React.useState(targetPokemons[0]);
+        const [difficulty, setDifficulty] = React.useState(10);
+        const audioRef = React.useRef(null);
+
+        React.useEffect(() => {
+            const savedScore = localStorage.getItem(`score_${difficulty}`);
+            const savedTargetPokemon = localStorage.getItem(`targetPokemon_${difficulty}`);
+            const savedPokemons = localStorage.getItem(`pokemons_${difficulty}`);
+
+            if (savedScore && savedTargetPokemon && savedPokemons) {
+                setScore(parseInt(savedScore));
+                setTargetPokemon(JSON.parse(savedTargetPokemon));
+                setPokemons(JSON.parse(savedPokemons));
+            } else {
+                initializeGame();
+            }
+        }, [difficulty]);
+
+        React.useEffect(() => {
+            localStorage.setItem(`score_${difficulty}`, score.toString());
+            localStorage.setItem(`targetPokemon_${difficulty}`, JSON.stringify(targetPokemon));
+            localStorage.setItem(`pokemons_${difficulty}`, JSON.stringify(pokemons));
+        }, [score, difficulty, targetPokemon, pokemons]);
+
+        const initializeGame = () => {
+            const initialPokemons = Array.from({ length: difficulty }, (_, index) => ({
+                id: (index % 150) + 1,
+                position: generateRandomPosition(),
+            }));
+            setPokemons(initialPokemons);
+            setTargetPokemon(targetPokemons[Math.floor(Math.random() * targetPokemons.length)]);
+            setScore(0);
+        };
+
+        const handlePokemonCatch = (pokemonId) => {
+            if (pokemonId === targetPokemon.id) {
+                setPokemons(prev => prev.filter(p => p.id !== pokemonId));
+                setScore(prev => prev + 1);
+                const newMessage = messages[Math.floor(Math.random() * messages.length)];
+                setMessage(newMessage);
+                setIsDialogOpen(true);
+
+                if (audioRef.current) {
+                    audioRef.current.src = SUCCESS_SOUND;
+                    audioRef.current.play().catch(e => console.log('Audio play failed:', e));
+                }
+
+                const remainingTargets = targetPokemons.filter(p => p.id !== targetPokemon.id);
+                if (remainingTargets.length > 0) {
+                    setTargetPokemon(remainingTargets[Math.floor(Math.random() * remainingTargets.length)]);
+                }
+
+                const colors = ['bg-blue-50', 'bg-green-50', 'bg-yellow-50', 'bg-pink-50', 'bg-purple-50'];
+                setBgColor(colors[Math.floor(Math.random() * colors.length)]);
+            }
+        };
+
+        const skipTarget = () => {
+            const remainingTargets = targetPokemons.filter(p => p.id !== targetPokemon.id);
+            if (remainingTargets.length > 0) {
+                setTargetPokemon(remainingTargets[Math.floor(Math.random() * remainingTargets.length)]);
+            }
+        };
+
+        return (
+            <main className={`min-h-screen ${bgColor} transition-colors duration-500 relative overflow-hidden cursor-crosshair bg-[url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjfzr-WCdKgiSpWRMCDItaxlhQgzWbFarIjCQTiZbM21OOBaHpXA9ce-9FBqQ6K5JvLvTe0hYmrhh_QmRfmrrchEQ8VxAOelt-wotlfl7ipof6gnggW83IObm9FB0iRb1FmqtyfSs4zVF83gv-7ghjwETrZSLRk7g-dM3vDJJn7waYZy_C1PdvpSuESpg/s1920/Ash_Ketchum_World_Champion_Screenshot_4.jpg')] bg-cover bg-center`}>
+                <audio ref={audioRef} />
+                <div className="fixed top-4 right-4 bg-black text-white px-4 py-2 rounded-full shadow-lg font-sunshiney text-xl flex flex-col items-center gap-2">
+                    <div>Pokémon Encontrados: {score}/{difficulty}</div>
+                    <div className="flex gap-2">
+                        {[10, 50, 200].map((level) => (
+                            <button
+                                key={level}
+                                onClick={() => {
+                                    setDifficulty(level);
+                                    initializeGame();
+                                    setBgColor('bg-white');
+                                }}
+                                className={`px-2 py-1 rounded font-bold ${difficulty === level ? 'bg-blue-600 text-white' : 'bg-gray-700 text-white'}`}
+                            >
+                                {level}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="text-center py-8">
+                    <div className="bg-white mx-auto max-w-3xl rounded-xl p-6 shadow-lg">
+                        <h1 className="text-4xl md:text-5xl mb-2 text-blue-900 drop-shadow-lg font-sunshiney">
+                            ¡Encuentra los Pokémon!
+                        </h1>
+                        <p className="text-lg text-black mb-2">
+                            Encuentra a <span className="text-blue-900 font-bold">{targetPokemon.name}</span>
+                        </p>
+                        <Button
+                            onClick={skipTarget}
+                            className="bg-yellow-400 text-black font-sunshiney text-xl hover:bg-yellow-300"
+                        >
+                            Saltar Personaje
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="relative w-full h-[80vh]">
+                    {pokemons.map((pokemon) => (
+                        <Pokemon
+                            key={`${pokemon.id}-${pokemon.position.x}-${pokemon.position.y}`}
+                            id={pokemon.id}
+                            position={pokemon.position}
+                            onCatch={() => handlePokemonCatch(pokemon.id)}
+                        />
+                    ))}
+                </div>
+
+                <AlertDialog open={isDialogOpen}>
+                    <div className="text-center">
+                        <h2 className="text-2xl font-sunshiney mb-4">¡{targetPokemon.name} Encontrado!</h2>
+                        <div className="text-xl py-4 flex flex-col items-center font-sunshiney">
+                            <div>{message?.text}</div>
+                            {message && <img src={message.gif} alt="Pokémon GIF" className="mt-4 w-48 h-48 object-contain" />}
+                        </div>
+                        <Button
+                            onClick={() => setIsDialogOpen(false)}
+                            className="bg-black hover:bg-gray-800 text-white font-sunshiney text-xl"
+                        >
+                            ¡Seguir Buscando!
+                        </Button>
+                    </div>
+                </AlertDialog>
+
+                <AlertDialog open={score === difficulty}>
+                    <div className="text-center">
+                        <h2 className="text-2xl font-sunshiney mb-4">🏆 ¡Victoria!</h2>
+                        <div className="text-xl py-4 font-sunshiney flex flex-col items-center gap-4">
+                            ¡Felicitaciones! Has encontrado todos los Pokémon objetivo. ¡Eres un verdadero Maestro Pokémon!
+                            <img src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif" alt="Victory Celebration" className="w-48 h-48 object-contain" />
+                        </div>
+                    </div>
+                </AlertDialog>
+            </main>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+    </script>
+</body>
+</html>
